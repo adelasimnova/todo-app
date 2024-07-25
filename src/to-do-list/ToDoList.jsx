@@ -6,6 +6,8 @@ import {
   getTodos, createTodo, deleteTodo, updateTodo,
 } from '../services/api';
 import 'boxicons';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export function ToDoList() {
   const [todos, setTodos] = React.useState([]);
@@ -13,12 +15,20 @@ export function ToDoList() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    setLoading(true);
+    setLoading(true); 
+    refetchToDos();
+  }, []);
+
+  function refetchToDos() {
     getTodos().then((response) => {
       setTodos(response.data.todos);
       setLoading(false);
+    })
+    .catch((error) => {
+      toast.error(error.message);
+      setLoading(false);
     });
-  }, []);
+  }
 
   function createToDo(toDoData) {
     setError(null);
@@ -34,31 +44,34 @@ export function ToDoList() {
       return;
     }
     createTodo(toDoData).then(() => {
-      getTodos().then((response) => {
-        setTodos(response.data.todos);
-        setLoading(false);
-      });
+      refetchToDos();
+    })
+    .catch((error) => {
+      toast.error(error.message);
+      setLoading(false);
     });
   }
 
   function deleteToDo(todoId) {
     setLoading(true);
     deleteTodo(todoId).then(() => {
-      getTodos().then((response) => {
-        setTodos(response.data.todos);
-        setLoading(false);
-      });
-    });
+      refetchToDos();
+    })
+    .catch((error) => {
+      toast.error(error.message);
+      setLoading(false);
+    })
   }
 
   function updateToDo(todoId, toDoData) {
     setLoading(true);
     updateTodo(todoId, toDoData).then(() => {
-      getTodos().then((response) => {
-        setTodos(response.data.todos);
-        setLoading(false);
-      });
-    });
+      refetchToDos();
+    })
+    .catch((error) => {
+      toast.error(error.message);
+      setLoading(false);
+    })
   }
 
   return (
@@ -81,6 +94,7 @@ export function ToDoList() {
           />
         ))}
       </div> 
+      <Toaster position='top-right' />
     </div>
   );
 }
