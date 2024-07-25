@@ -14,7 +14,7 @@
     border-radius: 5px;
     padding: 0 10px;
     margin-right: 15px;
-    font-size: larger;
+    font-size: 20px;
 }
 
 .to-do-button {
@@ -23,7 +23,7 @@
     border: none;
     border-radius: 5px;
     font-weight: lighter;
-    font-size: xx-large;
+    font-size: 30px;
     color: white;
     background-color: rgb(29, 29, 195);
     cursor: pointer;
