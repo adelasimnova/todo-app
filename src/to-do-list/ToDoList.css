@@ -1,0 +1,34 @@
+.todo-list {
+    background-color: lightblue;
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.todo-heading {
+    margin: 0;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.loader-wrapper {
+    text-align: center;
+    height: 50px;
+    padding-top: 10px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 0;
+}
+
