@@ -75,7 +75,7 @@ export function ToDoList() {
   }
 
   return (
-    <div className="card-list">
+    <div className="todo-list">
       <h1 className="todo-heading">My To Do List 🎯</h1>
       <div className="loader-wrapper">
         {loading && <box-icon name="loader" animation="spin" size="md" /> }
