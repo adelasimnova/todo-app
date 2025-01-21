@@ -1,3 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Reset Tailwind's base styles to match browser defaults */
+  body {
+    @apply font-sans; /* Ensure the default font family is applied */
+  }
+
+  /* Remove Tailwind's base resets for headings */
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre, code, a, ul, ol, li, table, th, td {
+    all: revert;
+  }
+}
+
 body {
   font-family: arial, sans-serif;
   margin: 0px;

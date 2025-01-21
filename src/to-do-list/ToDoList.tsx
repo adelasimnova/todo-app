@@ -1,18 +1,18 @@
 import * as React from 'react';
 import './ToDoList.css';
-import { Card } from '../card/Card';
+import { ToDoItem } from '../todo-item/ToDoItem';
 import { ToDoForm } from '../to-do-form/ToDoForm';
 import {
   getTodos, createTodo, deleteTodo, updateTodo,
 } from '../services/api';
 import 'boxicons';
 import toast, { Toaster } from 'react-hot-toast';
-
+import { ToDo } from '../types/Todo';
 
 export function ToDoList() {
-  const [todos, setTodos] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [todos, setTodos] = React.useState<ToDo[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string|null>(null);
 
   React.useEffect(() => {
     setLoading(true); 
@@ -20,8 +20,8 @@ export function ToDoList() {
   }, []);
 
   function refetchToDos() {
-    getTodos().then((response) => {
-      setTodos(response.data.todos);
+    getTodos().then((response: ToDo[]) => {
+      setTodos(response);
       setLoading(false);
     })
     .catch((error) => {
@@ -30,7 +30,7 @@ export function ToDoList() {
     });
   }
 
-  function createToDo(toDoData) {
+  function createToDo(toDoData: ToDo) {
     setError(null);
     setLoading(true);
     if (toDoData.title.length === 0) {
@@ -52,7 +52,7 @@ export function ToDoList() {
     });
   }
 
-  function deleteToDo(todoId) {
+  function deleteToDo(todoId: string) {
     setLoading(true);
     deleteTodo(todoId).then(() => {
       refetchToDos();
@@ -63,7 +63,7 @@ export function ToDoList() {
     })
   }
 
-  function updateToDo(todoId, toDoData) {
+  function updateToDo(todoId: string, toDoData: {done?: boolean; title?: string;}) {
     setLoading(true);
     updateTodo(todoId, toDoData).then(() => {
       refetchToDos();
@@ -86,7 +86,7 @@ export function ToDoList() {
       </p> 
        <div className="cards-wrapper">
         {todos.map((item) => (
-          <Card
+          <ToDoItem
             key={item.id}
             todo={item}
             onDeleteTodo={deleteToDo}
