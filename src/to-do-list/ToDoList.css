@@ -7,12 +7,6 @@
     display: none;
 }
 
-.todo-heading {
-    margin: 0;
-    text-align: center;
-    padding-top: 60px;
-}
-
 .cards-wrapper {
     display: flex;
     flex-direction: column;
