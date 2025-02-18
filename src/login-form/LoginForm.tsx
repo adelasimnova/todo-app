@@ -2,6 +2,7 @@ import * as React from "react";
 import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
+import { Link } from "react-router-dom";
 
 export function LoginForm() {
   const [email, setEmail] = React.useState<string>("");
@@ -74,6 +75,9 @@ export function LoginForm() {
         <button className="form-button" type="submit">
           Submit
         </button>
+        <div className="login-link">
+          Don't have an account? <Link to="/registration">Register Now</Link>
+        </div>
       </form>
     </div>
   );

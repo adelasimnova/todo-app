@@ -6,11 +6,13 @@ import { getTodos, createTodo, deleteTodo, updateTodo } from "../services/api";
 import "boxicons";
 import toast, { Toaster } from "react-hot-toast";
 import { ToDo } from "../types/Todo";
+import { useNavigate } from "react-router-dom";
 
 export function ToDoList() {
   const [todos, setTodos] = React.useState<ToDo[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setLoading(true);
@@ -77,7 +79,12 @@ export function ToDoList() {
         toast.error(error.message);
         setLoading(false);
       });
-  }
+  // }
+  // function handleLogout() {
+  //   localStorage.removeItem("accessToken");
+  //   localStorage.removeItem("userId");
+  //   navigate("/login");
+  // }
 
   return (
     <div className="todo-list">

@@ -2,6 +2,7 @@ import * as React from "react";
 import "./RegistrationForm.css";
 import { registerUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function RegistrationForm() {
   const [email, setEmail] = React.useState<string>("");
@@ -34,12 +35,12 @@ export function RegistrationForm() {
 
   return (
     <div className="form-wrapper">
-      <h1 className="heading">Registration</h1>
+      <h1 className="heading">Create an account</h1>
       <div className="loader-wrapper">
         {loading && <box-icon name="loader" animation="spin" size="md" />}
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="form-item-row">
+        <div className="item-row">
           <label className="form-label" htmlFor="email-input">
             E-mail:
           </label>
@@ -89,6 +90,9 @@ export function RegistrationForm() {
         <button className="form-button" type="submit">
           Submit
         </button>
+        <div className="login-link">
+          Already have an account? <Link to="/login">Login Now</Link>
+        </div>
       </form>
     </div>
   );

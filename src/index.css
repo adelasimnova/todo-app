@@ -18,6 +18,10 @@ body {
   font-family: arial, sans-serif;
   margin: 0px;
   min-width: 320px;
+  background-image: url('assets/todopic.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .heading {
@@ -66,7 +70,7 @@ body {
 }
 
 .form-button {
-  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   background-color: #1b540f;
