@@ -32,9 +32,10 @@
     cursor: pointer;
 } 
 
- .todo-item-title {
+.todo-item-title {
     margin: 0px 20px;
     font-weight: 200;
+    cursor: default;
 } 
 
 .todo-item-checkbox {

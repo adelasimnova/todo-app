@@ -80,14 +80,17 @@ export function ToDoList() {
         setLoading(false);
       });
   }
-  // function handleLogout() {
-  //   localStorage.removeItem("accessToken");
-  //   localStorage.removeItem("userId");
-  //   navigate("/login");
-  // }
+  function handleLogout() {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    navigate("/login");
+  }
 
   return (
     <div className="todo-list-container">
+      <div className="logout" onClick={handleLogout}>
+        Logout
+      </div>
       <div className="todo-list">
         <h1 className="heading">To Do List 🎯</h1>
         <div className="loader-wrapper">

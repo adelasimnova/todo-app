@@ -49,6 +49,4 @@ export async function loginUser(email: string, password: string) {
 
   localStorage.setItem("userId", response.data.userId);
   localStorage.setItem("accessToken", response.data.accessToken);
-
-  console.log(response);
 }

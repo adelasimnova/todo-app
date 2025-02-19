@@ -52,15 +52,15 @@ body {
   display: grid;
   padding: 40px;
   background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 500px;
 }
 
 .item-row {
   margin-bottom: 20px;
  }
 
- .form-label {
+.form-label {
   display: flex;
   justify-content: center;
   font-size: 25px;
@@ -69,9 +69,9 @@ body {
 .form-input {
   cursor: text;
   padding: 5px 10px;
-  width: 280px;
+  width: 100%;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 10px;
 }
 
@@ -79,7 +79,7 @@ body {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  background-color: #1b540f;
+  background-color: #7cb46b;
   color: white;
   border: none;
   padding: 10px;
