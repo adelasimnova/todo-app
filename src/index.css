@@ -15,7 +15,8 @@
 }
 
 body {
-  font-family: arial, sans-serif;
+  min-height: 100vh;
+  font-family: sans-serif, arial;
   margin: 0px;
   min-width: 320px;
   background-image: url('assets/todopic.jpg');
@@ -25,9 +26,14 @@ body {
 }
 
 .heading {
-  margin: 0;
-  text-align: center;
-  padding-top: 60px;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  margin: 50px 0px;
+  width: 500px;
+  font-family: sans-serif, arial;
 }
 
 .error-message {
@@ -43,7 +49,7 @@ body {
 }
 
 .form {
-  display:grid;
+  display: grid;
   padding: 40px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;

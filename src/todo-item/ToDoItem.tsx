@@ -20,16 +20,16 @@ export function ToDoItem(props: ToDoItemData) {
   }
 
   return (
-    <div className="border-4 border-white rounded-[10px] my-[5px] px-[10px] py-[10px] w-[calc(100%-20px)] max-w-[810px] flex items-center justify-between">
-      <div className="flex items-center cursor-pointer">
+    <div className="todo-item-container">
+      <div className="todo-item-left">
         <input
-          className="w-5 h-5 cursor-pointer"
+          className="todo-item-checkbox"
           type="checkbox"
           checked={props.todo.done}
           onChange={handleDone}
         />
         <h2
-          className={`ml-2 font-light ${props.todo.done ? "line-through text-gray-500" : ""}`}
+          className={`todo-item-title ${props.todo.done ? "line-through text-gray-500" : ""}`}
         >
           {props.todo.title}
         </h2>

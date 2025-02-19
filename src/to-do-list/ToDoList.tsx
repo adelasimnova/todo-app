@@ -79,7 +79,7 @@ export function ToDoList() {
         toast.error(error.message);
         setLoading(false);
       });
-  // }
+  }
   // function handleLogout() {
   //   localStorage.removeItem("accessToken");
   //   localStorage.removeItem("userId");
@@ -87,24 +87,28 @@ export function ToDoList() {
   // }
 
   return (
-    <div className="todo-list">
-      <h1 className="heading">My To Do List 🎯</h1>
-      <div className="loader-wrapper">
-        {loading && <box-icon name="loader" animation="spin" size="md" />}
+    <div className="todo-list-container">
+      <div className="todo-list">
+        <h1 className="heading">To Do List 🎯</h1>
+        <div className="loader-wrapper">
+          {loading && <box-icon name="loader" animation="spin" size="md" />}
+        </div>
+        <div>
+          <ToDoForm onCreateTodo={createToDo} />
+          <p className="error-message">{error}</p>
+          <div className="cards-wrapper">
+            {todos.map((item) => (
+              <ToDoItem
+                key={item.id}
+                todo={item}
+                onDeleteTodo={deleteToDo}
+                onUpdateTodo={updateToDo}
+              />
+            ))}
+          </div>
+        </div>
+        <Toaster position="top-right" />
       </div>
-      <ToDoForm onCreateTodo={createToDo} />
-      <p className="error-message">{error}</p>
-      <div className="cards-wrapper">
-        {todos.map((item) => (
-          <ToDoItem
-            key={item.id}
-            todo={item}
-            onDeleteTodo={deleteToDo}
-            onUpdateTodo={updateToDo}
-          />
-        ))}
-      </div>
-      <Toaster position="top-right" />
     </div>
   );
 }

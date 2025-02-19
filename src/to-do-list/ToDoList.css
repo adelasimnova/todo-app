@@ -1,6 +1,9 @@
 .todo-list {
-    /* background-color: lightblue; */
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 800px;
 }
 
 .hidden {

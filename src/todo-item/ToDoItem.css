@@ -1,14 +1,14 @@
-/* .todo-item-container {
+.todo-item-container {
     border: 4px solid #ffffff;
     border-radius: 10px;
     margin: 5px 0;
     padding: 10px;
-    width: calc(100% - 20px);
     max-width: 810px;
     display: flex; 
     align-items: center;
     justify-content: space-between;
-} */
+    min-width: 500px;
+}
 
 .delete-button {
     width: 50px;
@@ -18,29 +18,32 @@
     font-weight: lighter;
     font-size: 30px;
     color: white;
-    background-color: rgb(200, 72, 72);
+    background-color: #C41E3A;
     cursor: pointer;
-    margin-right: 10px;
 }
 
-/* .todo-item-left {
+.delete-button:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.todo-item-left {
     display: flex;
     align-items: center;
     cursor: pointer;
-} */
+} 
 
-/* .todo-item-title {
-    margin-left: 10px;
+ .todo-item-title {
+    margin: 0px 20px;
     font-weight: 200;
-} */
+} 
 
-/* .todo-item-checkbox {
+.todo-item-checkbox {
     width: 20px;
     height: 20px;
     cursor: pointer;
-} */
+    margin-left: 10px;
+} 
 
-/* .strike {
-    text-decoration:line-through;
-    color: gray;
-} */
+.todo-item-checkbox:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
