@@ -50,3 +50,21 @@ export async function loginUser(email: string, password: string) {
   localStorage.setItem("userId", response.data.userId);
   localStorage.setItem("accessToken", response.data.accessToken);
 }
+
+export async function logoutUser() {
+  const accessToken = localStorage.getItem("accessToken");
+  await axios.delete(`${API_URL}/tokens`, {
+    headers: { Authorization: "bearer " + accessToken },
+  });
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("userId");
+}
+
+export async function deleteUser() {
+  const accessToken = localStorage.getItem("accessToken");
+  await axios.delete(`${API_URL}/users`, {
+    headers: { Authorization: "bearer " + accessToken },
+  });
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("userId");
+}

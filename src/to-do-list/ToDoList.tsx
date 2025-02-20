@@ -2,7 +2,14 @@ import * as React from "react";
 import "./ToDoList.css";
 import { ToDoItem } from "../todo-item/ToDoItem";
 import { ToDoForm } from "../to-do-form/ToDoForm";
-import { getTodos, createTodo, deleteTodo, updateTodo } from "../services/api";
+import {
+  getTodos,
+  createTodo,
+  deleteTodo,
+  updateTodo,
+  logoutUser,
+  deleteUser,
+} from "../services/api";
 import "boxicons";
 import toast, { Toaster } from "react-hot-toast";
 import { ToDo } from "../types/Todo";
@@ -80,16 +87,38 @@ export function ToDoList() {
         setLoading(false);
       });
   }
+
   function handleLogout() {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userId");
-    navigate("/login");
+    setLoading(true);
+    logoutUser()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
+  }
+
+  function handleDeleteUser() {
+    setLoading(true);
+    deleteUser()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
   }
 
   return (
     <div className="todo-list-container">
-      <div className="logout" onClick={handleLogout}>
+      <div className="action-button" onClick={handleLogout}>
         Logout
+      </div>
+      <div className="action-button" onClick={handleDeleteUser}>
+        Close account
       </div>
       <div className="todo-list">
         <h1 className="heading">To Do List 🎯</h1>
