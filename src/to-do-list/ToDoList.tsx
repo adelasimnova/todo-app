@@ -104,7 +104,7 @@ export function ToDoList() {
     setLoading(true);
     deleteUser()
       .then(() => {
-        navigate("/login");
+        navigate("/registration");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -117,7 +117,11 @@ export function ToDoList() {
       <div className="action-button" onClick={handleLogout}>
         Logout
       </div>
-      <div className="action-button" onClick={handleDeleteUser}>
+      <div
+        data-testid="delete-user-button"
+        className="action-button"
+        onClick={handleDeleteUser}
+      >
         Close account
       </div>
       <div className="todo-list">
