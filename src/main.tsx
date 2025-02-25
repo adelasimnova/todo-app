@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { ToDoList } from "./to-do-list/ToDoList";
+import { ToDoList } from "./todo-list/ToDoList";
 import "./index.css";
 import {
   BrowserRouter,

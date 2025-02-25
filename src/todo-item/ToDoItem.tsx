@@ -23,6 +23,7 @@ export function ToDoItem(props: ToDoItemData) {
     <div className="todo-item-container">
       <div className="todo-item-left">
         <input
+          data-testid="todo-item-checkbox"
           className="todo-item-checkbox"
           type="checkbox"
           checked={props.todo.done}
@@ -34,7 +35,11 @@ export function ToDoItem(props: ToDoItemData) {
           {props.todo.title}
         </h2>
       </div>
-      <button className="delete-button" type="submit" onClick={handleDelete}>
+      <button
+        className="todo-delete-button"
+        type="submit"
+        onClick={handleDelete}
+      >
         -
       </button>
     </div>

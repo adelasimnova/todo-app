@@ -3,9 +3,9 @@ import { randomUUID } from "crypto";
 
 test.describe("ToDos", () => {
   const testEmail = `registration.test${randomUUID()}@simnova.sk`;
-  const testPassword = "kolotoc";
 
   test.beforeEach(async ({ page }) => {
+    // registracia usera
     // GIVEN
     await page.goto("/registration");
 
@@ -32,6 +32,7 @@ test.describe("ToDos", () => {
     );
     await registrationSubmitButton.click();
 
+    // login usera
     // THEN
     await page.waitForURL("/login");
 
@@ -43,7 +44,7 @@ test.describe("ToDos", () => {
 
     // fill password input
     const loginPasswordInput = page.getByTestId("login-password-input");
-    await loginPasswordInput.fill(testPassword);
+    await loginPasswordInput.fill("kolotoc");
 
     // click submit
     const loginSubmitButton = page.getByTestId("login-submit-button");
@@ -53,6 +54,7 @@ test.describe("ToDos", () => {
     await page.waitForURL("/");
   });
 
+  // odstranenie usera
   test.afterEach(async ({ page }) => {
     const deleteUserButton = page.getByTestId("delete-user-button");
     await deleteUserButton.click();
@@ -62,7 +64,52 @@ test.describe("ToDos", () => {
     expect(page.url()).toContain("/registration");
   });
 
-  test.only("should load todo page", async ({ page }) => {
+  // 1. test
+  test("should load todo page", async ({ page }) => {
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 2. test
+  test("should add todo", async ({ page }) => {
+    // fill in input
+    const todoInput = page.getByTestId("todo-input");
+    await todoInput.fill("Clean bathroom");
+
+    // click on + button
+    const addButton = page.getByTestId("todo-add-button");
+    await addButton.click();
+
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 3. test
+  test("should check off todo", async ({ page }) => {
+    // fill in input
+    const todoInput = page.getByTestId("todo-input");
+    await todoInput.fill("Buy bread");
+
+    // click on + button
+    const addButton = page.getByTestId("todo-add-button");
+    await addButton.click();
+
+    // click checkbox
+    const todoCheckbox = page.getByTestId("todo-item-checkbox");
+    await todoCheckbox.click();
+
     await page.waitForResponse((response) => {
       return (
         response.url().includes("/todos") &&
@@ -73,9 +120,17 @@ test.describe("ToDos", () => {
     await expect(page).toHaveScreenshot();
   });
 });
+
 // test.describe (terminus technikus) Slúži na zoskupenie testov, čo zlepšuje organizáciu a čitateľnosť kódu.
 // my sme ju pomenovali "ToDos", budeme testovat pridanie, odfajknutie a vymazanie todo itemu
 // "test("popis testu", async ({ page }) =>" toto je zaklad
 // je to asynchr. funkcia, await proste napisem aby to slo
-// nasli sme cez inspect na stranke dany input, pridali sme sme si donho atribut data-testid="registration-email-input" vramci registrationform.tsx a pouzili sme getByTestId aby sme tnen input nasli
-// vyplnili sme mail pomocou zavolania funkcie fill, ktoru maju vymylenu v playwright a najdeme to v dokumentacii
+// nasli sme cez inspect na stranke dany input, pridali sme sme si donho unikatny atribut napr. data-testid="registration-email-input" vramci registrationform.tsx a pouzili sme getByTestId aby sme ten input nasli
+// vyplnili sme mail pomocou zavolania funkcie fill, ktoru maju vymyslenu v playwright (najdeme to v dokumentacii)
+
+// DONE
+// 1. najst input a vyplnit, stlacit add button, pockat na request (request na server a cakam na response, k tomu dostanem cez inspect: network) a nakoniec screenshot
+// 2. najst checkbox, odkliknut ho, pockat na request, ten bude iny (nebol?), treba si zistit ako predtym, potom screenshot
+
+// TODO
+// 3. najst todo a vymazat (na FB katka poslala kod, ako rozoznat a najst to spravne Todo, checkbox a delete button)

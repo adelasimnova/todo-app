@@ -28,19 +28,24 @@ export function ToDoForm(props: { onCreateTodo: (todo: ToDo) => void }) {
 
   return (
     <form
-      className="to-do-form"
+      className="todo-form"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
       }}
     >
       <input
-        className="to-do-input"
+        data-testid="todo-input"
+        className="todo-input"
         placeholder="Enter task here"
         onChange={handleChange}
         value={text}
       />
-      <button className="to-do-button" type="submit">
+      <button
+        data-testid="todo-add-button"
+        className="todo-add-button"
+        type="submit"
+      >
         +
       </button>
     </form>
