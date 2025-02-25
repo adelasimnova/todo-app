@@ -13,12 +13,22 @@ The To-Do App is a simple and intuitive application designed to help users manag
 
 **Delete Chores:** Users have the option to delete a chore card, allowing them to remove tasks that are no longer relevant or needed.
 
+**User Authentication (New Feature)**
+
+User Registration: New users can create an account by providing their email and password.
+
+Login System: Registered users can log in securely to access their tasks.
+
+Cancel User Account: Users have the option to delete their account permanently, removing all associated data.
+
 ## Technologies Used
 **Frontend:** HTML, CSS, JavaScript, React
 
 **Backend:** Node.js (outsourced)
 
 **State Management:** React Hooks
+
+**Authentication:** JWT (JSON Web Token) for secure login and session management
 
 # Setup
 1. Install [Node and npm](https://nodejs.org/en/download). 
