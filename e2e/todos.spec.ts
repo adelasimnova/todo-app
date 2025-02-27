@@ -235,21 +235,4 @@ test.describe("ToDos", () => {
 // DONE
 // 1. najst input a vyplnit, stlacit add button, pockat na request (request na server a cakam na response, k tomu dostanem cez inspect: network) a nakoniec screenshot
 // 2. najst checkbox, odkliknut ho, pockat na request, ten bude iny (nebol?), treba si zistit ako predtym, potom screenshot
-
-////// How to find list item with concrete dodo text:
-
-//const todoItem = page
-//.getByTestId("todo-item")
-//.filter({ hasText: "Buy milk" });
-
-////// How to find checkbox inside concrete todo item:
-
-//const todoItem = page
-//.getByTestId("todo-item")
-//.filter({ hasText: todoItemText });
-//
-//const checkbox = todoItem.getByTestId("todo-item-checkbox");
-//await checkbox.click();
-
-// TODO
-// 3. najst todo a vymazat (na FB katka poslala kod, ako rozoznat a najst to spravne Todo, checkbox a delete button)
+// 3. najst todo a vymazat
