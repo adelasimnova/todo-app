@@ -30,12 +30,14 @@ export function ToDoItem(props: ToDoItemData) {
           onChange={handleDone}
         />
         <h2
+          data-testid="todo-item-title"
           className={`todo-item-title ${props.todo.done ? "line-through text-gray-500" : ""}`}
         >
           {props.todo.title}
         </h2>
       </div>
       <button
+        data-testid="todo-delete-button"
         className="todo-delete-button"
         type="submit"
         onClick={handleDelete}

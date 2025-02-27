@@ -5,7 +5,7 @@ test.describe("ToDos", () => {
   const testEmail = `registration.test${randomUUID()}@simnova.sk`;
 
   test.beforeEach(async ({ page }) => {
-    // registracia usera
+    //// registracia usera
     // GIVEN
     await page.goto("/registration");
 
@@ -32,7 +32,7 @@ test.describe("ToDos", () => {
     );
     await registrationSubmitButton.click();
 
-    // login usera
+    //// login usera
     // THEN
     await page.waitForURL("/login");
 
@@ -54,7 +54,7 @@ test.describe("ToDos", () => {
     await page.waitForURL("/");
   });
 
-  // odstranenie usera
+  //// odstranenie usera
   test.afterEach(async ({ page }) => {
     const deleteUserButton = page.getByTestId("delete-user-button");
     await deleteUserButton.click();
@@ -119,6 +119,110 @@ test.describe("ToDos", () => {
     });
     await expect(page).toHaveScreenshot();
   });
+
+  // 4. test
+  test("should check off concrete todo from many", async ({ page }) => {
+    // fill in input (1)
+    const todoInputFirst = page.getByTestId("todo-input");
+    await todoInputFirst.fill("Buy bread");
+
+    // click on + button (1)
+    const addButtonFirst = page.getByTestId("todo-add-button");
+    await addButtonFirst.click();
+
+    // fill in input (2)
+    const todoInputSecond = page.getByTestId("todo-input");
+    await todoInputSecond.fill("Make bed");
+
+    // click on + button (2)
+    const addButtonSecond = page.getByTestId("todo-add-button");
+    await addButtonSecond.click();
+
+    // click concrete checkbox
+    const todoCheckboxMany = page
+      .getByTestId("todo-item")
+      .filter({ hasText: "Make bed" })
+      .getByTestId("todo-item-checkbox");
+
+    await todoCheckboxMany.click();
+
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 5. test
+  test("should delete todo", async ({ page }) => {
+    // fill in input
+    const todoInput = page.getByTestId("todo-input");
+    await todoInput.fill("Clean bathroom");
+
+    // click on + button
+    const addButton = page.getByTestId("todo-add-button");
+    await addButton.click();
+
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+
+    // click on - button
+    const deleteButton = page.getByTestId("todo-delete-button");
+    await deleteButton.click();
+
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 6. test
+  test("should delete concrete todo from many", async ({ page }) => {
+    // fill in input (1)
+    const todoInputFirst = page.getByTestId("todo-input");
+    await todoInputFirst.fill("Learn Chinese");
+
+    // click on + button (1)
+    const addButtonFirst = page.getByTestId("todo-add-button");
+    await addButtonFirst.click();
+
+    // fill in input (2)
+    const todoInputSecond = page.getByTestId("todo-input");
+    await todoInputSecond.fill("Buy tools");
+
+    // click on + button (2)
+    const addButtonSecond = page.getByTestId("todo-add-button");
+    await addButtonSecond.click();
+
+    // click concrete delete
+    const todoDeleteMany = page
+      .getByTestId("todo-item")
+      .filter({ hasText: "Buy tools" })
+      .getByTestId("todo-delete-button");
+
+    await todoDeleteMany.click();
+
+    await page.waitForResponse((response) => {
+      return (
+        response.url().includes("/todos") &&
+        response.request().method() === "GET" &&
+        response.status() === 200
+      );
+    });
+    await expect(page).toHaveScreenshot();
+  });
 });
 
 // test.describe (terminus technikus) Slúži na zoskupenie testov, čo zlepšuje organizáciu a čitateľnosť kódu.
@@ -131,6 +235,21 @@ test.describe("ToDos", () => {
 // DONE
 // 1. najst input a vyplnit, stlacit add button, pockat na request (request na server a cakam na response, k tomu dostanem cez inspect: network) a nakoniec screenshot
 // 2. najst checkbox, odkliknut ho, pockat na request, ten bude iny (nebol?), treba si zistit ako predtym, potom screenshot
+
+////// How to find list item with concrete dodo text:
+
+//const todoItem = page
+//.getByTestId("todo-item")
+//.filter({ hasText: "Buy milk" });
+
+////// How to find checkbox inside concrete todo item:
+
+//const todoItem = page
+//.getByTestId("todo-item")
+//.filter({ hasText: todoItemText });
+//
+//const checkbox = todoItem.getByTestId("todo-item-checkbox");
+//await checkbox.click();
 
 // TODO
 // 3. najst todo a vymazat (na FB katka poslala kod, ako rozoznat a najst to spravne Todo, checkbox a delete button)

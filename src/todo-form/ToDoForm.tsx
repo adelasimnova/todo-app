@@ -37,7 +37,7 @@ export function ToDoForm(props: { onCreateTodo: (todo: ToDo) => void }) {
       <input
         data-testid="todo-input"
         className="todo-input"
-        placeholder="Enter task here"
+        placeholder="What needs to be done?"
         onChange={handleChange}
         value={text}
       />
