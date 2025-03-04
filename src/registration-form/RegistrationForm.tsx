@@ -70,6 +70,7 @@ export function RegistrationForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            maxLength={100}
           />
         </div>
         <div className="item-row">
@@ -90,6 +91,7 @@ export function RegistrationForm() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             minLength={6}
+            maxLength={100}
           />
         </div>
         <p className="error-message">{error}</p>
