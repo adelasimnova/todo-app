@@ -9,7 +9,10 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "typecheck": "tsc",
-    "test:e2e": "playwright test" 
+    "test:e2e": "playwright test", 
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "generate:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "axios": "^1.6.8",
