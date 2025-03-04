@@ -6,6 +6,10 @@ test.describe("ToDos", () => {
 
   test.beforeEach(async ({ page }) => {
     //// registracia usera
+
+    // zvysenie defaultneho poctu sekund, dokedy ma zbehnut .beforeEach
+    test.setTimeout(20000);
+
     // GIVEN
     await page.goto("/registration");
 
@@ -181,8 +185,8 @@ test.describe("ToDos", () => {
     await page.waitForResponse((response) => {
       return (
         response.url().includes("/todos") &&
-        response.request().method() === "GET" &&
-        response.status() === 200
+        response.request().method() === "DELETE" &&
+        response.status() === 204
       );
     });
     await expect(page).toHaveScreenshot();
@@ -190,6 +194,7 @@ test.describe("ToDos", () => {
 
   // 6. test
   test("should delete concrete todo from many", async ({ page }) => {
+    const todoToDelete = "Buy tools";
     // fill in input (1)
     const todoInputFirst = page.getByTestId("todo-input");
     await todoInputFirst.fill("Learn Chinese");
@@ -200,7 +205,7 @@ test.describe("ToDos", () => {
 
     // fill in input (2)
     const todoInputSecond = page.getByTestId("todo-input");
-    await todoInputSecond.fill("Buy tools");
+    await todoInputSecond.fill(todoToDelete);
 
     // click on + button (2)
     const addButtonSecond = page.getByTestId("todo-add-button");
@@ -209,7 +214,7 @@ test.describe("ToDos", () => {
     // click concrete delete
     const todoDeleteMany = page
       .getByTestId("todo-item")
-      .filter({ hasText: "Buy tools" })
+      .filter({ hasText: todoToDelete })
       .getByTestId("todo-delete-button");
 
     await todoDeleteMany.click();
@@ -217,8 +222,8 @@ test.describe("ToDos", () => {
     await page.waitForResponse((response) => {
       return (
         response.url().includes("/todos") &&
-        response.request().method() === "GET" &&
-        response.status() === 200
+        response.request().method() === "DELETE" &&
+        response.status() === 204
       );
     });
     await expect(page).toHaveScreenshot();

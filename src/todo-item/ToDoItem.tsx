@@ -20,7 +20,7 @@ export function ToDoItem(props: ToDoItemData) {
   }
 
   return (
-    <div className="todo-item-container">
+    <div className="todo-item-container" data-testid="todo-item">
       <div className="todo-item-left">
         <input
           data-testid="todo-item-checkbox"
