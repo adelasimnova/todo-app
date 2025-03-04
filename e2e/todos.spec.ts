@@ -58,7 +58,7 @@ test.describe("ToDos", () => {
     await page.waitForURL("/");
   });
 
-  //// odstranenie usera
+  //// delete user
   test.afterEach(async ({ page }) => {
     const deleteUserButton = page.getByTestId("delete-user-button");
     await deleteUserButton.click();
