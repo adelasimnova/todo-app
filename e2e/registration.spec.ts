@@ -109,4 +109,36 @@ test.describe("Registration", () => {
     // THEN
     await expect(page).toHaveScreenshot();
   });
+
+  // 5. test
+  test("should not register user with invalid confirm password", async ({
+    page,
+  }) => {
+    // GIVEN
+    const invalidConfirmPassword = "pass";
+    // fill valid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmail);
+
+    // fill valid password
+    const registrationPasswordInput = page.getByTestId(
+      "registration-password-input",
+    );
+    await registrationPasswordInput.fill(testPassword);
+
+    // fill invalid confirm password
+    const registrationConfirmPasswordInput = page.getByTestId(
+      "registration-confirm-password-input",
+    );
+    await registrationConfirmPasswordInput.fill(invalidConfirmPassword);
+
+    // WHEN
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
 });
