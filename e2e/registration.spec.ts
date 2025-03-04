@@ -67,6 +67,7 @@ test.describe("Registration", () => {
 
     expect(page.url()).toContain("/registration");
   });
+
   // 3. test
   test("should not register user with invalid email", async ({ page }) => {
     // GIVEN
@@ -74,6 +75,30 @@ test.describe("Registration", () => {
     // fill invalid email
     const registrationEmailInput = page.getByTestId("registration-email-input");
     await registrationEmailInput.fill(invalidEmail);
+
+    // WHEN
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 4. test
+  test("should not register user with invalid password", async ({ page }) => {
+    // GIVEN
+    const invalidPassword = "pass";
+    // fill valid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmail);
+
+    // fill invalid password
+    const registrationPasswordInput = page.getByTestId(
+      "registration-password-input",
+    );
+    await registrationPasswordInput.fill(invalidPassword);
 
     // WHEN
     const registrationSubmitButton = page.getByTestId(
