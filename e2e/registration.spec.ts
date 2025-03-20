@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Registration", () => {
+test.describe.only("Registration", () => {
   const testEmail = "registration.test@simnova.sk";
   const testPassword = "kolotoc";
 
@@ -16,17 +16,18 @@ test.describe("Registration", () => {
 
   // 2. test
   test("should register user succesfully", async ({ page }) => {
-    // fill email input
+    test.setTimeout(60000);
+    // fill valid email
     const registrationEmailInput = page.getByTestId("registration-email-input");
     await registrationEmailInput.fill(testEmail);
 
-    // fill password input
+    // fill valid password
     const registrationPasswordInput = page.getByTestId(
       "registration-password-input",
     );
     await registrationPasswordInput.fill(testPassword);
 
-    // fill confirm password input
+    // fill valid confirm password
     const registrationConfirmPasswordInput = page.getByTestId(
       "registration-confirm-password-input",
     );
@@ -44,11 +45,11 @@ test.describe("Registration", () => {
     expect(page.url()).toContain("/login");
 
     //// login user so then i can delete him
-    // fill email input
+    // fill valid email
     const loginEmailInput = page.getByTestId("login-email-input");
     await loginEmailInput.fill(testEmail);
 
-    // fill password input
+    // fill valid password
     const loginPasswordInput = page.getByTestId("login-password-input");
     await loginPasswordInput.fill(testPassword);
 
@@ -71,12 +72,14 @@ test.describe("Registration", () => {
   // 3. test
   test("should not register user with invalid email", async ({ page }) => {
     // GIVEN
-    const invalidEmail = "invalidEmail";
+    const invalidEmail = "invalidEmail.com";
+
     // fill invalid email
     const registrationEmailInput = page.getByTestId("registration-email-input");
     await registrationEmailInput.fill(invalidEmail);
 
     // WHEN
+    // click submit
     const registrationSubmitButton = page.getByTestId(
       "registration-submit-button",
     );
@@ -87,7 +90,9 @@ test.describe("Registration", () => {
   });
 
   // 4. test
-  test("should not register user with invalid password", async ({ page }) => {
+  test("should not register user with invalid shorter password", async ({
+    page,
+  }) => {
     // GIVEN
     const invalidPassword = "pass";
     // fill valid email
@@ -101,6 +106,7 @@ test.describe("Registration", () => {
     await registrationPasswordInput.fill(invalidPassword);
 
     // WHEN
+    // click submit
     const registrationSubmitButton = page.getByTestId(
       "registration-submit-button",
     );
@@ -116,6 +122,7 @@ test.describe("Registration", () => {
   }) => {
     // GIVEN
     const invalidConfirmPassword = "pass";
+
     // fill valid email
     const registrationEmailInput = page.getByTestId("registration-email-input");
     await registrationEmailInput.fill(testEmail);
@@ -133,6 +140,7 @@ test.describe("Registration", () => {
     await registrationConfirmPasswordInput.fill(invalidConfirmPassword);
 
     // WHEN
+    // click submit
     const registrationSubmitButton = page.getByTestId(
       "registration-submit-button",
     );
@@ -141,4 +149,187 @@ test.describe("Registration", () => {
     // THEN
     await expect(page).toHaveScreenshot();
   });
+
+  // 6. test
+  test("should not register user with invalid email (without text before @)", async ({
+    page,
+  }) => {
+    // GIVEN
+    const invalidEmail = "@simnova.sk";
+
+    // fill invalid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(invalidEmail);
+
+    // WHEN
+    // click submit
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 7. test
+  test("should not register user with invalid email (without text after @)", async ({
+    page,
+  }) => {
+    // GIVEN
+    const invalidEmail = "registration.test@";
+
+    // fill invalid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(invalidEmail);
+
+    // WHEN
+    // click submit
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 8. test
+  test("should not register user with password over 30 characters", async ({
+    page,
+  }) => {
+    // GIVEN
+    const invalidPassword =
+      "012345678901234567890123456789012345678901234012345678901234567890123456789012345678901234";
+
+    // fill valid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmail);
+
+    // fill invalid password
+    const registrationPasswordInput = page.getByTestId(
+      "registration-password-input",
+    );
+    await registrationPasswordInput.fill(invalidPassword);
+
+    // fill invalid confirm password
+    const registrationConfirmPasswordInput = page.getByTestId(
+      "registration-confirm-password-input",
+    );
+    await registrationConfirmPasswordInput.fill(invalidPassword);
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 9. test
+  test("should not register user with no email", async ({ page }) => {
+    // GIVEN
+    const invalidEmail = "";
+
+    // fill invalid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(invalidEmail);
+
+    // WHEN
+    // click submit
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 10. test
+  test("should not register user with no password", async ({ page }) => {
+    // GIVEN
+    const invalidPassword = "";
+
+    // fill valid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmail);
+
+    // fill invalid password
+    const registrationPasswordInput = page.getByTestId(
+      "registration-password-input",
+    );
+    await registrationPasswordInput.fill(invalidPassword);
+
+    // WHEN
+    // click submit
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 11. test
+  test("should not register when password and confirm password do not match", async ({
+    page,
+  }) => {
+    // GIVEN
+    const invalidConfirmPassword = "kolotoc1234";
+
+    // fill valid email
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmail);
+
+    // fill valid password
+    const registrationPasswordInput = page.getByTestId(
+      "registration-password-input",
+    );
+    await registrationPasswordInput.fill(testPassword);
+
+    // fill invalid confirm password
+    const registrationConfirmPasswordInput = page.getByTestId(
+      "registration-confirm-password-input",
+    );
+    await registrationConfirmPasswordInput.fill(invalidConfirmPassword);
+
+    // WHEN
+    // click submit
+    const registrationSubmitButton = page.getByTestId(
+      "registration-submit-button",
+    );
+    await registrationSubmitButton.click();
+
+    // THEN
+    await expect(page).toHaveScreenshot();
+  });
+
+  // 12. test
+  test("email should not be longer than 200 chars", async ({ page }) => {
+    // GIVEN
+    const testEmailTooLong =
+      "registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test@simnovasimnovasimnovasimnovasimnova.sker";
+
+    // WHEN
+    const registrationEmailInput = page.getByTestId("registration-email-input");
+    await registrationEmailInput.fill(testEmailTooLong);
+
+    // THEN
+    await expect(registrationEmailInput).toHaveValue(
+      "registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.registration.test.re",
+    );
+  });
+
+  // 13. test
+  test("'Login Now' works sucessfully", async ({ page }) => {
+    // click 'Login Now'
+    const loginNowLink = page.getByTestId("login-link");
+    await loginNowLink.click();
+
+    await page.waitForURL("/login");
+
+    expect(page.url()).toContain("/login");
+  });
 });
+
+// ToDo
+// 7. test ze confirm heslo je pridlhe
+// 8. test ze confirm heslo uplne chyba

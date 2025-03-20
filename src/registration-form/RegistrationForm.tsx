@@ -53,6 +53,7 @@ export function RegistrationForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            maxLength={200}
           />
         </div>
         <div className="item-row">
@@ -70,7 +71,7 @@ export function RegistrationForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
-            maxLength={100}
+            maxLength={30}
           />
         </div>
         <div className="item-row">
@@ -91,7 +92,7 @@ export function RegistrationForm() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             minLength={6}
-            maxLength={100}
+            maxLength={30}
           />
         </div>
         <p className="error-message">{error}</p>
@@ -103,7 +104,10 @@ export function RegistrationForm() {
           Submit
         </button>
         <div className="login-link">
-          Already have an account? <Link to="/login">Login Now</Link>
+          Already have an account?{" "}
+          <Link to="/login" data-testid="login-link">
+            Login Now
+          </Link>
         </div>
       </form>
     </div>
