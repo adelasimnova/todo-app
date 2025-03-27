@@ -29,7 +29,10 @@ export function ToDoList() {
   function refetchToDos() {
     getTodos()
       .then((response: ToDo[]) => {
-        setTodos(response);
+        const sortedToDos = response.sort((a, b) =>
+          a.title.localeCompare(b.title),
+        );
+        setTodos(sortedToDos);
         setLoading(false);
       })
       .catch((error) => {

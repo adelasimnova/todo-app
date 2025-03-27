@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
+import { randomUUID } from "crypto";
 
-test.describe.only("Registration", () => {
-  const testEmail = "registration.test@simnova.sk";
+test.describe("Registration", () => {
+  const testEmail = "registration.test2@simnova.sk";
   const testPassword = "kolotoc";
 
   test.beforeEach(async ({ page }) => {
@@ -17,6 +18,8 @@ test.describe.only("Registration", () => {
   // 2. test
   test("should register user succesfully", async ({ page }) => {
     test.setTimeout(60000);
+    const testEmail = `registration.test${randomUUID()}@simnova.sk`;
+    const testPassword = "kolotoc";
     // fill valid email
     const registrationEmailInput = page.getByTestId("registration-email-input");
     await registrationEmailInput.fill(testEmail);

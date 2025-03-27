@@ -1,13 +1,14 @@
 .todo-list {
-    min-height: 100vh;
+    height: 100vh;
     min-width: 540px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 }
 
 .todo-list-navigation {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
 }
