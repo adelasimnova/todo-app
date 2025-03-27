@@ -332,7 +332,3 @@ test.describe("Registration", () => {
     expect(page.url()).toContain("/login");
   });
 });
-
-// ToDo
-// 7. test ze confirm heslo je pridlhe
-// 8. test ze confirm heslo uplne chyba
