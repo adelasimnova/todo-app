@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./ToDoList.css";
 import { ToDoItem } from "../todo-item/ToDoItem";
-import { ToDoForm } from "../to-do-form/ToDoForm";
+import { ToDoForm } from "../todo-form/ToDoForm";
 import {
   getTodos,
   createTodo,
@@ -29,7 +29,10 @@ export function ToDoList() {
   function refetchToDos() {
     getTodos()
       .then((response: ToDo[]) => {
-        setTodos(response);
+        const sortedToDos = response.sort((a, b) =>
+          a.title.localeCompare(b.title),
+        );
+        setTodos(sortedToDos);
         setLoading(false);
       })
       .catch((error) => {
@@ -104,7 +107,7 @@ export function ToDoList() {
     setLoading(true);
     deleteUser()
       .then(() => {
-        navigate("/login");
+        navigate("/registration");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -118,7 +121,11 @@ export function ToDoList() {
         <div className="action-button" onClick={handleLogout}>
           Logout
         </div>
-        <div className="action-button" onClick={handleDeleteUser}>
+        <div
+          className="action-button"
+          data-testid="delete-user-button"
+          onClick={handleDeleteUser}
+        >
           Close account
         </div>
       </div>

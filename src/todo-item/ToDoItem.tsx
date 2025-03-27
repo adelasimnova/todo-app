@@ -20,21 +20,28 @@ export function ToDoItem(props: ToDoItemData) {
   }
 
   return (
-    <div className="todo-item-container">
+    <div className="todo-item-container" data-testid="todo-item">
       <div className="todo-item-left">
         <input
+          data-testid="todo-item-checkbox"
           className="todo-item-checkbox"
           type="checkbox"
           checked={props.todo.done}
           onChange={handleDone}
         />
         <h2
+          data-testid="todo-item-title"
           className={`todo-item-title ${props.todo.done ? "line-through text-gray-500" : ""}`}
         >
           {props.todo.title}
         </h2>
       </div>
-      <button className="delete-button" type="submit" onClick={handleDelete}>
+      <button
+        data-testid="todo-delete-button"
+        className="todo-delete-button"
+        type="submit"
+        onClick={handleDelete}
+      >
         -
       </button>
     </div>

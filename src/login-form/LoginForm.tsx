@@ -45,29 +45,31 @@ export function LoginForm() {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="item-row">
-          <label className="form-label" htmlFor="email-input">
+          <label className="form-label" htmlFor="login-email-input">
             E-mail:
           </label>
           <input
+            data-testid="login-email-input"
             className="form-input"
             type="email"
             placeholder="Your e-mail"
-            id="email-input"
+            id="login-email-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div className="item-row">
-          <label className="form-label" htmlFor="password-input">
+          <label className="form-label" htmlFor="login-password-input">
             Password:
           </label>
 
           <input
+            data-testid="login-password-input"
             className="form-input"
             type="password"
             placeholder="Your password"
-            id="password-input"
+            id="login-password-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -75,7 +77,11 @@ export function LoginForm() {
           />
         </div>
         <p className="error-message">{error}</p>
-        <button className="form-button" type="submit">
+        <button
+          data-testid="login-submit-button"
+          className="form-button"
+          type="submit"
+        >
           Submit
         </button>
         <div className="login-link">

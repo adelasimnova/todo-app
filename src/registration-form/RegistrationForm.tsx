@@ -44,57 +44,73 @@ export function RegistrationForm() {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="item-row">
-          <label className="form-label" htmlFor="email-input">
+          <label className="form-label" htmlFor="registration-email-input">
             E-mail:
           </label>
           <input
+            data-testid="registration-email-input"
             className="form-input"
             type="email"
             placeholder="Your e-mail"
-            id="email-input"
+            id="registration-email-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            maxLength={200}
           />
         </div>
         <div className="item-row">
-          <label className="form-label" htmlFor="password-input">
+          <label className="form-label" htmlFor="registration-password-input">
             Password:
           </label>
 
           <input
+            data-testid="registration-password-input"
             className="form-input"
             type="password"
             placeholder="Your password"
-            id="password-input"
+            id="registration-password-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            maxLength={30}
           />
         </div>
         <div className="item-row">
-          <label className="form-label" htmlFor="confirm-password-input">
+          <label
+            className="form-label"
+            htmlFor="registration-confirm-password-input"
+          >
             Confirm password:
           </label>
 
           <input
+            data-testid="registration-confirm-password-input"
             className="form-input"
             type="password"
             placeholder="Confirm your password"
-            id="confirm-password-input"
+            id="registration-confirm-password-input"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             minLength={6}
+            maxLength={30}
           />
         </div>
         <p className="error-message">{error}</p>
-        <button className="form-button" type="submit">
+        <button
+          className="form-button"
+          type="submit"
+          data-testid="registration-submit-button"
+        >
           Submit
         </button>
         <div className="login-link">
-          Already have an account? <Link to="/login">Login Now</Link>
+          Already have an account?{" "}
+          <Link to="/login" data-testid="login-link">
+            Login Now
+          </Link>
         </div>
       </form>
     </div>

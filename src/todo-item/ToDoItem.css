@@ -10,7 +10,7 @@
     min-width: 500px;
 }
 
-.delete-button {
+.todo-delete-button {
     width: 50px;
     height: 50px;
     border: none;
