@@ -1,9 +1,15 @@
 .todo-list {
     min-height: 100vh;
+    min-width: 540px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 800px;
+}
+
+.todo-list-navigation {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .hidden {
@@ -15,12 +21,6 @@
     flex-direction: column;
     align-items: center;
     padding: 0 10px;
-}
-
-.loader-wrapper {
-    text-align: center;
-    height: 50px;
-    padding-top: 10px;
 }
 
 .error-message {
@@ -35,7 +35,7 @@
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     padding: 10px 20px;
-    margin: 20px;
+    margin: 0px 15px 30px 0px;
 }
 
 .action-button:hover {

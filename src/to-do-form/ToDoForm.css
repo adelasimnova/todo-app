@@ -1,9 +1,10 @@
 .to-do-form {
     display: flex;
-    height: 100px;
+    height: 70px;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    margin: 0;
 }
 
 .to-do-input {

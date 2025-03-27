@@ -35,7 +35,10 @@ export function RegistrationForm() {
 
   return (
     <div className="form-wrapper">
-      <h1 className="heading">Create an account</h1>
+      <div className="heading-wrapper">
+        <h1 className="heading">To Do List</h1>
+        <div className="form-label">Create account</div>
+      </div>
       <div className="loader-wrapper">
         {loading && <box-icon name="loader" animation="spin" size="md" />}
       </div>

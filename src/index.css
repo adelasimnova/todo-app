@@ -17,23 +17,28 @@
 body {
   min-height: 100vh;
   font-family: sans-serif, arial;
-  margin: 0px;
-  min-width: 320px;
+  padding: 0 20px;
   background-image: url('assets/todopic.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.heading-wrapper {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  width: 500px;
+  font-family: sans-serif, arial;
+  margin-top: 30px;
+}
+
 .heading {
   display: flex;
   justify-content: center;
-  padding: 40px 0px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  margin: 50px 0px;
-  width: 500px;
-  font-family: sans-serif, arial;
 }
 
 .error-message {
@@ -42,7 +47,6 @@ body {
 }
 
 .form-wrapper {
-  margin: 30px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +54,7 @@ body {
 
 .form {
   display: grid;
-  padding: 40px;
+  padding: 30px 40px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   width: 500px;
@@ -90,4 +94,11 @@ body {
 :hover.form-button {
   cursor: pointer;
   box-shadow: 0 0 20px rgba(27, 84, 15, 0.5);
+}
+
+.loader-wrapper {
+  text-align: center;
+  height: 50px;
+  padding: 10px;
+  margin: 10px;
 }
