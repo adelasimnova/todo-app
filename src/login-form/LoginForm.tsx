@@ -36,7 +36,10 @@ export function LoginForm() {
 
   return (
     <div className="form-wrapper">
-      <h1 className="heading">Login</h1>
+      <div className="heading-wrapper">
+        <h1 className="heading">To Do List</h1>
+        <div className="form-label">Login</div>
+      </div>
       <div className="loader-wrapper">
         {loading && <box-icon name="loader" animation="spin" size="md" />}
       </div>

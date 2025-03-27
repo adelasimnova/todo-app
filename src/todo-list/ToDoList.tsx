@@ -114,18 +114,22 @@ export function ToDoList() {
 
   return (
     <div className="todo-list-container">
-      <div className="action-button" onClick={handleLogout}>
-        Logout
-      </div>
-      <div
-        data-testid="delete-user-button"
-        className="action-button"
-        onClick={handleDeleteUser}
-      >
-        Close account
+      <div className="todo-list-navigation">
+        <div className="action-button" onClick={handleLogout}>
+          Logout
+        </div>
+        <div
+          className="action-button"
+          data-testid="delete-user-button"
+          onClick={handleDeleteUser}
+        >
+          Close account
+        </div>
       </div>
       <div className="todo-list">
-        <h1 className="heading">To Do List 🎯</h1>
+        <div className="heading-wrapper">
+          <h1 className="heading">To Do List</h1>
+        </div>
         <div className="loader-wrapper">
           {loading && <box-icon name="loader" animation="spin" size="md" />}
         </div>
