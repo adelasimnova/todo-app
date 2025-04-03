@@ -57,6 +57,7 @@ export function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            maxLength={200}
           />
         </div>
         <div className="item-row">
@@ -84,8 +85,11 @@ export function LoginForm() {
         >
           Submit
         </button>
-        <div className="login-link">
-          Don't have an account? <Link to="/registration">Register Now</Link>
+        <div className="registration-link">
+          Don't have an account?{" "}
+          <Link to="/registration" data-testid="registration-link">
+            Register Now
+          </Link>
         </div>
       </form>
     </div>
