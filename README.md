@@ -1,5 +1,5 @@
 # To Do App
-[Demo](https://webbucket-cdn-todo-app-production-c708d833.stacktape-app.com/)
+[Demo](https://todo.simnova.sk)
 
 ## Project Description
 The To-Do App is a simple and intuitive application designed to help users manage their daily tasks and chores efficiently. This project focuses on creating a user-friendly interface where users can add, mark as completed, and delete tasks seamlessly.
