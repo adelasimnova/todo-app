@@ -122,7 +122,7 @@ export function ToDoList() {
           Logout
         </div>
         <div
-          className="action-button"
+          className="action-button-delete"
           data-testid="delete-user-button"
           onClick={handleDeleteUser}
         >

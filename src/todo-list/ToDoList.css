@@ -1,46 +1,60 @@
 .todo-list {
-    height: 100vh;
-    min-width: 540px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
+  height: 100vh;
+  min-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
 }
 
 .todo-list-navigation {
-    position: fixed;
-    bottom: 0;
-    right: 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .cards-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
 }
 
 .error-message {
-    color: red;
-    text-align: center;
-    margin-top: 0;
+  color: red;
+  text-align: center;
+  margin-top: 0;
 }
 
 .action-button {
-    position: relative;
-    float: right;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin: 0px 15px 30px 0px;
+  position: relative;
+  float: right;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 0px 15px 30px 0px;
+}
+
+.action-button-delete {
+  position: relative;
+  float: right;
+  color: white;
+  background-color: #c41e3a;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 0px 15px 30px 0px;
 }
 
 .action-button:hover {
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
+.action-button-delete:hover {
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
