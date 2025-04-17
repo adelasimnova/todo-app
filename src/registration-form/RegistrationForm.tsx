@@ -18,7 +18,9 @@ export function RegistrationForm() {
     setLoading(true);
     console.log(email, password, confirmPassword);
     if (password !== confirmPassword) {
-      setError("Passwords do NOT match");
+      setError(
+        "Uh-oh! Your passwords don’t match. Please check and try again.",
+      );
       setLoading(false);
       return;
     }

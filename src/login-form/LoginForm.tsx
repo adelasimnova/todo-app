@@ -23,10 +23,10 @@ export function LoginForm() {
       .catch((error) => {
         if (error.response.status === 401) {
           setLoading(false);
-          setError("Unauthorized");
+          setError("Oops! Wrong email or password. Give it another shot.");
         } else if (error.response.status === 404) {
           setLoading(false);
-          setError("User not found");
+          setError("Hmm, no user found. Could it be a typo?");
         } else {
           setLoading(false);
           setError(error.message);
