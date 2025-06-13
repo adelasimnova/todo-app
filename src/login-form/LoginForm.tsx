@@ -16,9 +16,13 @@ export function LoginForm() {
     setError("");
     setLoading(true);
     loginUser(email, password)
-      .then(() => {
+      .then((userData) => {
         setLoading(false);
-        navigate("/");
+        if (userData.isAdmin === true) {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       })
       .catch((error) => {
         if (error.response.status === 401) {

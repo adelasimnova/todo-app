@@ -2,8 +2,9 @@
     padding: 30px 40px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
-    width: 500px;
-    margin-bottom: 30px;
+    width: 100%;
+    margin: 30px 0px;
+
 }
 .admin-table-header {
     text-align: left;
@@ -11,6 +12,6 @@
 }
 
 .admin-table-data-cell {
-    padding-top: 5px;
+    padding: 5px 0px;
     font-size: 20px;
 }

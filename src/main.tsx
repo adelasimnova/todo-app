@@ -19,15 +19,29 @@ function PrivateRoute() {
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }
+
+function AdminPrivateRoute() {
+  const accessToken = localStorage.getItem("accessToken");
+  const userId = localStorage.getItem("userId");
+  const isAdmin: boolean =
+    localStorage.getItem("isAdmin") === "true" ? true : false;
+
+  const isAuthenticated = !!accessToken && !!userId && isAdmin;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
       <Route path="/registration" element={<RegistrationForm />} />
       <Route path="/login" element={<LoginForm />} />
-      <Route path="/admin" element={<AdminDashboard />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/" element={<ToDoList />} />
+      </Route>
+
+      <Route element={<AdminPrivateRoute />}>
+        <Route path="/admin" element={<AdminDashboard />} />
       </Route>
     </Routes>
   </BrowserRouter>,

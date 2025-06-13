@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ToDo } from "../types/Todo";
+import { User } from "../types/User";
 
 // const API_URL_OLD = 'https://mainapigateway-todos-api-ddb-dev-75916462.stacktape-app.com';
 const API_URL =
@@ -11,6 +12,21 @@ export async function getTodos(): Promise<ToDo[]> {
     headers: { Authorization: "bearer " + accessToken },
   });
   return response.data.todos;
+}
+
+export async function getUsers(): Promise<User[]> {
+  const accessToken = localStorage.getItem("accessToken");
+  const response = await axios.get(`${API_URL}/users`, {
+    headers: { Authorization: "bearer " + accessToken },
+  });
+  return response.data.users;
+}
+
+export async function deleteUserByAdmin(id: string) {
+  const accessToken = localStorage.getItem("accessToken");
+  return axios.delete(`${API_URL}/users/${id}`, {
+    headers: { Authorization: "bearer " + accessToken },
+  });
 }
 
 export async function createTodo(todoData: ToDo) {
@@ -41,7 +57,10 @@ export async function registerUser(email: string, password: string) {
   });
 }
 
-export async function loginUser(email: string, password: string) {
+export async function loginUser(
+  email: string,
+  password: string,
+): Promise<{ accesToken: string; isAdmin: boolean; userId: string }> {
   const response = await axios.post(`${API_URL}/tokens`, {
     email: email,
     password: password,
@@ -49,6 +68,9 @@ export async function loginUser(email: string, password: string) {
 
   localStorage.setItem("userId", response.data.userId);
   localStorage.setItem("accessToken", response.data.accessToken);
+  localStorage.setItem("isAdmin", response.data.isAdmin);
+  localStorage.setItem("email", email);
+  return response.data;
 }
 
 export async function logoutUser() {
@@ -58,6 +80,7 @@ export async function logoutUser() {
   });
   localStorage.removeItem("accessToken");
   localStorage.removeItem("userId");
+  localStorage.removeItem("isAdmin");
 }
 
 export async function deleteUser() {
@@ -67,4 +90,12 @@ export async function deleteUser() {
   });
   localStorage.removeItem("accessToken");
   localStorage.removeItem("userId");
+  localStorage.removeItem("isAdmin");
+}
+
+export async function updateUser(id: string, userData: Partial<User>) {
+  const accessToken = localStorage.getItem("accessToken");
+  await axios.patch(`${API_URL}/users/${id}`, userData, {
+    headers: { Authorization: "bearer " + accessToken },
+  });
 }

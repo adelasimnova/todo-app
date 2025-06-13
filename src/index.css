@@ -17,7 +17,7 @@
 body {
   min-height: 100vh;
   font-family: sans-serif, arial;
-  padding: 0 20px;
+  padding: 0px 20px 65px 20px;
   background-image: url('assets/todopic.jpg');
   background-size: cover;
   background-position: center;

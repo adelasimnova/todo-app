@@ -2,24 +2,16 @@ import * as React from "react";
 import "./ToDoList.css";
 import { ToDoItem } from "../todo-item/ToDoItem";
 import { ToDoForm } from "../todo-form/ToDoForm";
-import {
-  getTodos,
-  createTodo,
-  deleteTodo,
-  updateTodo,
-  logoutUser,
-  deleteUser,
-} from "../services/api";
+import { getTodos, createTodo, deleteTodo, updateTodo } from "../services/api";
 import "boxicons";
 import toast, { Toaster } from "react-hot-toast";
 import { ToDo } from "../types/Todo";
-import { useNavigate } from "react-router-dom";
+import { UserSettings } from "../user-settings/UserSettings";
 
 export function ToDoList() {
   const [todos, setTodos] = React.useState<ToDo[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
-  const navigate = useNavigate();
 
   React.useEffect(() => {
     setLoading(true);
@@ -91,44 +83,9 @@ export function ToDoList() {
       });
   }
 
-  function handleLogout() {
-    setLoading(true);
-    logoutUser()
-      .then(() => {
-        navigate("/login");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        setLoading(false);
-      });
-  }
-
-  function handleDeleteUser() {
-    setLoading(true);
-    deleteUser()
-      .then(() => {
-        navigate("/registration");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        setLoading(false);
-      });
-  }
-
   return (
     <div className="todo-list-container">
-      <div className="todo-list-navigation">
-        <div className="action-button" onClick={handleLogout}>
-          Logout
-        </div>
-        <div
-          className="action-button-delete"
-          data-testid="delete-user-button"
-          onClick={handleDeleteUser}
-        >
-          Close account
-        </div>
-      </div>
+      <UserSettings />
       <div className="todo-list">
         <div className="heading-wrapper">
           <h1 className="heading">To Do List</h1>
