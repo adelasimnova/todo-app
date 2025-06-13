@@ -77,7 +77,9 @@ export function AdminDashboard() {
             <td className="admin-table-data-cell">
               <select
                 value={item.isAdmin ? "admin" : "user"}
-                onChange={(e) => selectRole(item.id, e.target.value)}
+                onChange={(e) =>
+                  selectRole(item.id, e.target.value as "admin" | "user")
+                }
               >
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
