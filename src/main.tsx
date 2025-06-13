@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { RegistrationForm } from "./registration-form/RegistrationForm";
 import { LoginForm } from "./login-form/LoginForm";
+import { AdminDashboard } from "./admin-dashboard/AdminDashboard";
 
 function PrivateRoute() {
   const accessToken = localStorage.getItem("accessToken");
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Routes>
       <Route path="/registration" element={<RegistrationForm />} />
       <Route path="/login" element={<LoginForm />} />
+      <Route path="/admin" element={<AdminDashboard />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/" element={<ToDoList />} />

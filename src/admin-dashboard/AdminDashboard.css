@@ -1,0 +1,16 @@
+.admin-table{
+    padding: 30px 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    width: 500px;
+    margin-bottom: 30px;
+}
+.admin-table-header {
+    text-align: left;
+    font-size: 25px;
+}
+
+.admin-table-data-cell {
+    padding-top: 5px;
+    font-size: 20px;
+}

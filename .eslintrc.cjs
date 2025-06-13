@@ -17,6 +17,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react-hooks/exhaustive-deps': 0,
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "react-refresh/only-export-components": 0
   },
 }
